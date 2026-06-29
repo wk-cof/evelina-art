@@ -1,0 +1,130 @@
+// Translations
+const translations = {
+    ro: {
+        title: "Evelina | Pictură pe Față Profesională în Cahul",
+        nav_gallery: "Galerie",
+        nav_services: "Servicii",
+        nav_book: "Rezervă Acum",
+        hero_title: "Dăm Viață Imaginației",
+        hero_desc: "Salut, sunt Evelina! Am 14 ani și sunt pasionată de pictura pe față în Cahul, Moldova. Ador să transform chipurile în creații magice.",
+        btn_view_work: "Vezi Lucrările Mele",
+        btn_hire_me: "Invită-mă la Evenimentul Tău",
+        gallery_title: "Portofoliul Meu",
+        gallery_desc: "O privire asupra unora dintre cele mai recente lucrări ale mele.",
+        services_title: "Evenimente și Servicii",
+        srv_bday_title: "🎂 Zile de Naștere",
+        srv_bday_desc: "Fă ziua specială a copilului tău de neuitat cu picturi pe față distractive și colorate pentru toți invitații.",
+        srv_school_title: "🏫 Evenimente Școlare",
+        srv_school_desc: "Disponibilă pentru începutul anului școlar, târguri școlare și petreceri de absolvire.",
+        srv_fair_title: "🎪 Târguri și Evenimente Locale",
+        srv_fair_desc: "Pot amenaja un stand la evenimentele locale din Cahul pentru a aduce bucurie și artă comunității.",
+        contact_title: "Să Facem Magie!",
+        contact_desc: "Vrei să mă rezervi pentru următorul tău eveniment? Mi-ar plăcea să contribui la magia lui.",
+        lbl_phone: "📞 Telefon:",
+        lbl_location: "📍 Locație: Cahul, Moldova",
+        contact_note: "*(Te rog să ceri numărul părinților mei la rezervare, deoarece sunt minoră)*",
+        footer_rights: "Toate drepturile rezervate."
+    },
+    ru: {
+        title: "Evelina | Профессиональный Аквагрим в Кагуле",
+        nav_gallery: "Галерея",
+        nav_services: "Услуги",
+        nav_book: "Забронировать",
+        hero_title: "Воплощаем Фантазии в Жизнь",
+        hero_desc: "Привет, я Эвелина! Мне 14 лет, и я занимаюсь аквагримом в Кагуле, Молдова. Я обожаю превращать лица в волшебные образы.",
+        btn_view_work: "Посмотреть Мои Работы",
+        btn_hire_me: "Пригласить на Мероприятие",
+        gallery_title: "Моё Портфолио",
+        gallery_desc: "Взгляните на некоторые из моих недавних работ.",
+        services_title: "Мероприятия и Услуги",
+        srv_bday_title: "🎂 Дни Рождения",
+        srv_bday_desc: "Сделайте особенный день вашего ребенка незабываемым с веселым и ярким аквагримом для всех гостей.",
+        srv_school_title: "🏫 Школьные Мероприятия",
+        srv_school_desc: "Доступна для начала учебного года, школьных ярмарок и выпускных.",
+        srv_fair_title: "🎪 Местные Ярмарки и Мероприятия",
+        srv_fair_desc: "Я могу установить стенд на местных мероприятиях в Кагуле, чтобы приносить радость и искусство обществу.",
+        contact_title: "Давайте Творить Волшебство!",
+        contact_desc: "Хотите забронировать меня на ваше следующее мероприятие? Я буду рада сделать его особенным.",
+        lbl_phone: "📞 Телефон:",
+        lbl_location: "📍 Локация: Кагул, Молдова",
+        contact_note: "*(Пожалуйста, попросите номер моих родителей при бронировании, так как я несовершеннолетняя)*",
+        footer_rights: "Все права защищены."
+    }
+};
+
+// Language Switcher Logic
+const btnRo = document.getElementById('lang-ro');
+const btnRu = document.getElementById('lang-ru');
+
+function setLanguage(lang) {
+    document.documentElement.lang = lang;
+    
+    // Update active button state
+    if (lang === 'ro') {
+        btnRo.classList.add('active');
+        btnRu.classList.remove('active');
+    } else {
+        btnRu.classList.add('active');
+        btnRo.classList.remove('active');
+    }
+
+    // Translate texts
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            if (element.tagName === 'TITLE') {
+                document.title = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
+        }
+    });
+}
+
+btnRo.addEventListener('click', () => setLanguage('ro'));
+btnRu.addEventListener('click', () => setLanguage('ru'));
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.15
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll('.fade-in-scroll').forEach(section => {
+    observer.observe(section);
+});
+
+// Image Gallery Dialog (Native HTML Dialog)
+const dialog = document.getElementById('image-dialog');
+const dialogImg = document.getElementById('dialog-img');
+const closeBtn = document.getElementById('close-dialog');
+const galleryImages = document.querySelectorAll('.gallery-img');
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+        dialogImg.src = img.src;
+        dialogImg.alt = img.alt;
+        dialog.showModal();
+    });
+});
+
+closeBtn.addEventListener('click', () => {
+    dialog.close();
+});
+
+dialog.addEventListener('click', (e) => {
+    // Close dialog when clicking on the backdrop
+    if (e.target === dialog) {
+        dialog.close();
+    }
+});

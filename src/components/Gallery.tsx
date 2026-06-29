@@ -28,7 +28,7 @@ export default function Gallery() {
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <Box
               component="img"
-              src={`/${src}`}
+              src={`${import.meta.env.BASE_URL}${src}`}
               alt={`Artwork ${index}`}
               onClick={() => setOpenImg(src)}
               sx={{
@@ -60,7 +60,7 @@ export default function Gallery() {
       >
         {openImg && (
           <img 
-            src={`/${openImg}`} 
+            src={`${import.meta.env.BASE_URL}${openImg}`} 
             alt="Enlarged artwork" 
             style={{ maxWidth: '100%', maxHeight: '90vh', borderRadius: 12, objectFit: 'contain' }} 
             onClick={() => setOpenImg(null)}

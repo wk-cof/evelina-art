@@ -22,7 +22,8 @@ export const translations = {
         lbl_phone: "📞 Telefon: ",
         lbl_location: "📍 Locație: Cahul, Moldova",
         contact_note: "*(Te rog să ceri numărul părinților mei la rezervare, deoarece sunt minoră)*",
-        footer_rights: "Toate drepturile rezervate."
+        footer_rights: "Toate drepturile rezervate.",
+        load_high_res: "Încarcă rezoluția înaltă"
     },
     ru: {
         title: "Evelina | Профессиональный Аквагрим в Кагуле",
@@ -45,9 +46,10 @@ export const translations = {
         contact_title: "Давайте Творить Волшебство!",
         contact_desc: "Хотите забронировать меня на ваше следующее мероприятие? Я буду рада сделать его особенным.",
         lbl_phone: "📞 Телефон: ",
-        lbl_location: "📍 Локация: Кагул, Молдова",
+        lbl_location: "📍 Место: Кагул, Молдова",
         contact_note: "*(Пожалуйста, попросите номер моих родителей при бронировании, так как я несовершеннолетняя)*",
-        footer_rights: "Все права защищены."
+        footer_rights: "Все права защищены.",
+        load_high_res: "Загрузить высокое разрешение"
     }
 };
 
